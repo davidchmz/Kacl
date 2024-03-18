@@ -1,0 +1,53 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --teal: rgb(177, 225, 225);
+  --gray: rgb(174, 174, 174);
+}
+
+body {
+  margin: 0;
+  background: gray;
+}
+
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  margin-top: 2rem;
+  grid-template-columns: repeat(4, 6rem);
+  grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
+}
+
+.calculator-grid button {
+  cursor: pointer;
+  font-size: 1rem;
+  outline: none;
+  color: rgb(177, 225, 225);
+  background-color: rgb(174, 174, 174);
+  border: 1px solid rgb(177, 225, 225);
+}
+
+.calculator-grid button:hover {
+  background-color: rgb(177, 225, 225);
+  color: rgb(174, 174, 174);
+}
+
+.span-two {
+  grid-column: span 2;
+}
+
+.screen {
+  grid-column: 1/-1;
+  background-color: rgb(177, 225, 225);
+}
+
+.screen {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  font-size: 2rem;
+  color: ;
+}
