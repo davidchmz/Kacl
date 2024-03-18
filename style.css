@@ -4,13 +4,14 @@
 }
 
 :root {
-  --teal: rgb(177, 225, 225);
-  --gray: rgb(174, 174, 174);
+  --teal: rgb(115, 246, 246);
+  --gray: rgb(131, 131, 131);
+  --bg: rgb(14, 14, 14);
 }
 
 body {
   margin: 0;
-  background: gray;
+  background: var(--bg);
 }
 
 .calculator-grid {
@@ -25,14 +26,14 @@ body {
   cursor: pointer;
   font-size: 1rem;
   outline: none;
-  color: rgb(177, 225, 225);
-  background-color: rgb(174, 174, 174);
-  border: 1px solid rgb(177, 225, 225);
+  color: var(--teal);
+  background-color: var(--gray);
+  border: 1px solid var(--teal);
 }
 
 .calculator-grid button:hover {
-  background-color: rgb(177, 225, 225);
-  color: rgb(174, 174, 174);
+  background-color: var(--teal);
+  color: var(--gray);
 }
 
 .span-two {
@@ -41,13 +42,14 @@ body {
 
 .screen {
   grid-column: 1/-1;
-  background-color: rgb(177, 225, 225);
+  background-color: var(--teal);
 }
 
 .screen {
   display: flex;
   justify-content: end;
   align-items: center;
+  padding-right: 10px;
   font-size: 2rem;
-  color: ;
+  color: var(--gray);
 }
