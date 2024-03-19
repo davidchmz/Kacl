@@ -4,9 +4,10 @@
 }
 
 :root {
-  --teal: rgb(115, 246, 246);
-  --gray: rgb(131, 131, 131);
-  --bg: rgb(14, 14, 14);
+  --teal: #b4d4ff;
+  --gray: rgb(134, 182, 246);
+  --bg: rgb(238, 245, 255);
+  --yellow: ;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
 .calculator-grid {
   display: grid;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 7rem;
   grid-template-columns: repeat(4, 6rem);
   grid-template-rows: minmax(7rem, auto) repeat(5, 6rem);
 }
@@ -25,6 +26,7 @@ body {
 .calculator-grid button {
   cursor: pointer;
   font-size: 1rem;
+  font-weight: bold;
   outline: none;
   color: var(--teal);
   background-color: var(--gray);
@@ -38,6 +40,10 @@ body {
 
 .span-two {
   grid-column: span 2;
+}
+
+#equal-btn {
+  font-size: 1.5rem;
 }
 
 .screen {

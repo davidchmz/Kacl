@@ -1,88 +1,76 @@
-let runningTotal = 0;
-let buffer = "0";
-let previousOperator;
+document.addEventListener("DOMContentLoaded", function () {
+  const screen = document.querySelector(".screen");
+  const buttons = document.querySelectorAll("button");
+  let currentNumber = "";
+  let prevNumber = "";
+  let operation = "";
 
-const screen = document.querySelector(".screen");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const buttonText = button.textContent;
 
-function buttonClick(value) {
-  if (isNaN(value)) {
-    handleSymbol(value);
-  } else {
-    handleNumber(value);
-  }
-  screen.innerText = buffer;
-}
-
-function handleSymbol(symbol) {
-  switch (symbol) {
-    case "AC":
-      buffer = "0";
-      runningTotal = 0;
-      break;
-    case "=":
-      if (previousOperator === null) {
-        return;
-      }
-      flushoperation(parseInt(buffer));
-      previousOperator = null;
-      buffer = runningTotal;
-      break;
-    case "DEL":
-      if (buffer.length === 1) {
-        buffer = "0";
+      if (!isNaN(buttonText) || buttonText === ".") {
+        currentNumber += buttonText;
+        updateScreen();
+      } else if (buttonText === "AC") {
+        clearScreen();
+      } else if (buttonText === "DEL") {
+        deleteLastEntry();
+      } else if (buttonText === "=") {
+        calculate();
       } else {
-        buffer = buffer.toString(0, (buffer.length = 1));
+        if (currentNumber !== "") {
+          prevNumber = currentNumber;
+          currentNumber = "";
+          operation = buttonText;
+        } else if (prevNumber !== "") {
+          operation = buttonText;
+        }
       }
-      break;
-    case "+":
-    case "-":
-    case "=":
-    case "/":
-      handleMath(symbol);
-      break;
-  }
-}
+    });
+  });
 
-function handleMath(symbol){
-  if(buffer === '0'){
-    return;
+  function updateScreen() {
+    screen.textContent = currentNumber;
   }
 
-  const intBuffer = parseInt(buffer);
-
-  if(runningTotal === 0){
-    runningTotal = intBuffer;
-  }else{
-    flushoperation(intBuffer);
+  function clearScreen() {
+    screen.textContent = "0";
+    currentNumber = "";
+    prevNumber = "";
+    operation = "";
   }
-  previousOperator = symbol;
-  buffer = '0';
-}
 
-function flushoperation{intBuffer}{
-  if(previousOperator === '+'){
-    runningTotal += intBuffer;
-  }else if(previousOperator === '-'){
-    runningTotal -= intBuffer;
-  }else if(previousOperator === '*'){
-    runningTotal *= intBuffer;
-  }else if(previousOperator === '/'){
-    runningTotal /= intBuffer;
+  function deleteLastEntry() {
+    currentNumber = currentNumber.slice(0, -1);
+    updateScreen();
   }
-}
 
-function handleSymbol(numberString){
-  if(buffer === "0"){
-    buffer = numberString;
-  }else{
-    buffer += numberString;
+  function calculate() {
+    let result;
+    const num1 = parseFloat(prevNumber);
+    const num2 = parseFloat(currentNumber);
+
+    switch (operation) {
+      case "+":
+        result = num1 + num2;
+        break;
+      case "-":
+        result = num1 - num2;
+        break;
+      case "*":
+        result = num1 * num2;
+        break;
+      case "/":
+        result = num1 / num2;
+        break;
+      default:
+        return;
+    }
+
+    screen.textContent = result;
+    currentNumber = result.toString();
+    prevNumber = "";
+    operation = "";
   }
-}
-
-function init(){
-  document.querySelector('.calculator-grid'),addEventListener('click', function(event){
-    buttonClick(event.target.innerText);
-  })
-}
-
-init();
+});
