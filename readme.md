@@ -8,4 +8,4 @@ Calculator with minimal design.
 
 ### Preview
 
-![Preview Image](/Img\Kaclpreview.png)
+![Preview Image](/Img\Kacl preview.png)
